@@ -6,9 +6,12 @@ Usage:
  * ftpmount -u connection_name # umount given connection 
 
 Configuration:
- * file 'config.ini' in current dir
+ * file .ftpmountrc in current dir
+ * or file .ftpmountrc in home dir
+ * or file specified by -c option
 
-{{{
+Configuration file syntax:
+
 [hostone.pl]
 host=ftp.hostone.pl
 user=userone
@@ -19,4 +22,3 @@ mountpoint=hostone.pl
 host=ftp.hosttwo.pl
 user=usertwo
 mountpoint=hosttwo.pl
-}}}
