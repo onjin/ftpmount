@@ -1,0 +1,22 @@
+Helper script for mounting ftp resources by 'curlftpfs' and magane pool of connections in configuration file.
+
+Usage:
+ * ftpmount -l   # list available connections
+ * ftpmount connection_name # mount given connection name in configured mountpoint
+ * ftpmount -u connection_name # umount given connection 
+
+Configuration:
+ * file 'config.ini' in current dir
+
+{{{
+[hostone.pl]
+host=ftp.hostone.pl
+user=userone
+pass=passone # jak nie podamy tego wpisu, program się zapyta o hasło
+mountpoint=hostone.pl
+
+[hosttwo.pl]
+host=ftp.hosttwo.pl
+user=usertwo
+mountpoint=hosttwo.pl
+}}}
