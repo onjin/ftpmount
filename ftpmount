@@ -10,7 +10,7 @@ from getpass import getpass
 CONFIG_FILENAME = '.ftpmountrc'
 
 def main():
-    parser = OptionParser( usage="usage: %prog [options] connection", version="1.1.0", epilog="Author: Marek Wywial <onjinx@gmail.com> http://onjin.net/")
+    parser = OptionParser( usage="usage: %prog [options] connection", version="1.2.0", epilog="Author: Marek Wywial <onjinx@gmail.com> http://onjin.net/")
     parser.add_option('-c', '--config', dest="config", help="config file", action="store", default=False)
     parser.add_option('-l', '--list', dest="list", help="list available connections", action="store_true", default=False)
     parser.add_option('-u', '--umount', dest="umount", help="umount give connection", action="store_true", default=False)
@@ -39,7 +39,7 @@ def main():
 
     con_params = validate_config(config, connection)
 
-    ftp_mount(*con_params)
+    ftp_mount(*con_params+ (options.verbose,))
 
 
 def get_config(options):
@@ -91,9 +91,12 @@ def validate_config(config, connection):
         mountpoint = config.get(connection, 'mountpoint')
     return (host, user, password, mountpoint)
 
-def ftp_mount(host, user, password, mountpoint):
+def ftp_mount(host, user, password, mountpoint, verbose=False):
     os.system('mkdir -p %s' % mountpoint)
-    os.system('curlftpfs ftp://%s:%s@%s %s' % (user, password, host, mountpoint))
+    cmd = 'curlftpfs ftp://%s:%s@%s %s' % (user, password, host, mountpoint)
+    if verbose:
+        print "#V calling", cmd
+    os.system(cmd)
 
 if __name__== '__main__':
     main()

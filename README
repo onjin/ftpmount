@@ -1,4 +1,7 @@
 Helper script for mounting ftp resources by 'curlftpfs' and magane pool of connections in configuration file.
+Dependency:
+ * curlftpfs
+ * python >= 2.4
 
 Usage:
  * ftpmount -l   # list available connections
@@ -15,7 +18,7 @@ Configuration file syntax:
 [hostone.pl]
 host=ftp.hostone.pl
 user=userone
-pass=passone # jak nie podamy tego wpisu, program się zapyta o hasło
+pass=passone ; jak nie podamy tego wpisu, program się zapyta o hasło
 mountpoint=hostone.pl
 
 [hosttwo.pl]
